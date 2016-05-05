@@ -1,0 +1,92 @@
+#!/usr/bin/env python
+# chkconfig: - 85 15
+# Authors: limanman
+# OsChina: http://my.oschina.net/pydevops/
+# Purpose:
+import os
+import sys
+import time
+import signal
+
+
+def __exit_print(message, level='notice', is_exit=False):
+    """Exit or print with message.
+
+    :param message: notice or exit message
+    :param level: error level
+    :param is_exit: is exit ?
+    :return: None
+    """
+    exit_msg = 'found %s: %s' % (level, message)
+    if is_exit:
+        sys.exit(exit_msg)
+    print exit_msg
+
+
+def start():
+    try:
+        with open(pid_file, 'r+b') as rhandler:
+            daemon_pid = int(rhandler.read().strip())
+    except IOError, e:
+        daemon_pid = None
+    if daemon_pid:
+        exit_msg = 'pid %s exists, daemon already running.' % (pid_file)
+        __exit_print(exit_msg, 'notice', True)
+    command = '%s %s %s' % (sys.executable, bin_file, ' '.join(bin_args))
+    exit_msg = 'pid %s created, daemon already running.' % (pid_file)
+    __exit_print(exit_msg, 'notice', False)
+    os.system(command)
+
+
+def stop():
+    try:
+        with open(pid_file, 'r+b') as rhandler:
+            daemon_pid = int(rhandler.read().strip())
+    except IOError, e:
+        daemon_pid = None
+    if not daemon_pid:
+        exit_msg = 'pid %s not exists, daemon not running.' % (pid_file)
+        __exit_print(exit_msg, 'errors', False)
+        return
+
+    try:
+        while True:
+            os.kill(daemon_pid, signal.SIGTERM)
+            time.sleep(0.1)
+    except OSError, e:
+        if os.path.exists(pid_file):
+            os.remove(pid_file)
+            exit_msg = 'pid %s not exists, daemon is stopped.' % (pid_file)
+            __exit_print(exit_msg, 'errors', False)
+            return
+
+def restart():
+    stop()
+    time.sleep(1)
+    start()
+
+
+def main():
+    """Main function.
+
+    :return: None
+    """
+    action_type = {
+        'start': start,
+        'stop': stop,
+        'restart': restart,
+    }
+    action_argv = sys.argv[1] or None
+    if action_argv not in action_type:
+        exit_msg = 'invalid cli parameter, please check.'
+        __exit_print(exit_msg, 'errors', True)
+    # chdir workspace and run
+    os.chdir(bin_home)
+    action_type[action_argv]()
+
+if __name__ == '__main__':
+    bin_home = '/xm-workspace/xm-apps/collectd'
+    bin_file = os.path.join(bin_home, 'main.py')
+    bin_args = []
+    pid_file = '/var/run/collectd.pid'
+    main()
