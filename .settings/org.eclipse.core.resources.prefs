@@ -1,3 +1,13 @@
 eclipse.preferences.version=1
+encoding//Fortress/conf/Conf_database.py=utf-8
+encoding//Fortress/core/Core_register.py=utf-8
+encoding//Fortress/core/Core_run.py=utf-8
+encoding//Fortress/main.py=utf-8
+encoding//Fortress/modules/Mod_commutils.py=utf-8
+encoding//Fortress/modules/Mod_sqlalchemy.py=utf-8
+encoding//Fortress/modules/Mod_view.py=utf-8
+encoding//collectd/main.py=utf-8
+encoding//collectd/modules/CommUtils.py=utf-8
+encoding//collectd/modules/ServiceGet.py=utf-8
 encoding/redis-report_2.6.x.py=utf-8
 encoding/redis-report_2.7.x.py=utf-8
