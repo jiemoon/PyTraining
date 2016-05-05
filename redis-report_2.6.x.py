@@ -165,10 +165,10 @@ def main(argv):
 
 if __name__ == '__main__':
     redis_host = {
-        'China_China': '123.59.14.61',
-        'Asia_Oceania': '54.254.159.106',
-        'Europe_Africa': '54.72.86.70',
-        'America_Antarctica': '54.67.91.181',
+        'China_China': 'redis_ipaddr',
+        'Asia_Oceania': 'redis_ipaddr',
+        'Europe_Africa': 'redis_ipaddr',
+        'America_Antarctica': 'redis_ipaddr',
     }
     redis_port = 5123
     redis_keys = ['DnsServerMap', 'NatServerMap', 'StatusHelperMap', 'ProxyServerMap']
