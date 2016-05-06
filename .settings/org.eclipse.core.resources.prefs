@@ -5,6 +5,7 @@ encoding//Fortress/core/Core_run.py=utf-8
 encoding//Fortress/main.py=utf-8
 encoding//Fortress/modules/Mod_commutils.py=utf-8
 encoding//Fortress/modules/Mod_sqlalchemy.py=utf-8
+encoding//Fortress/modules/Mod_sqlconnect.py=utf-8
 encoding//Fortress/modules/Mod_view.py=utf-8
 encoding//collectd/main.py=utf-8
 encoding//collectd/modules/CommUtils.py=utf-8
