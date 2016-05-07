@@ -16,4 +16,5 @@ action_dict = {
     'ssh_user_add': Mod_view.ssh_user_add,
     'ssh_grup_add': Mod_view.ssh_grup_add,
     'fts_user_add': Mod_view.fts_user_add,
+    'sta_sessions': Mod_view.sta_sessions,
 }

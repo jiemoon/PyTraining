@@ -58,10 +58,8 @@ class SshHost(Base):
                       nullable=False)
     # 规范打印
     def __repr__(self):
-        return ('<SshHost(id: %s hostname: %s haddress: %s password: %s'
-                'hostport: %s auth_key: %s)>') % ( self.id, self.hostname,
-                                                   self.haddress, self.hostport,
-                                                   self.password, self.auth_key)
+        return ('<SshHost(id: %s hostname: %s haddress: %s hostport: %s)>') % (self.id,self.hostname,
+                                                                               self.haddress,self.hostport)
 
 # hostuser - 主机账户表
 class HostUser(Base):
@@ -76,7 +74,7 @@ class HostUser(Base):
     ]
     authtype = Column(ChoiceType(Authtype))
     username = Column(String(64),
-                      unique=True,
+                      unique=False,
                       nullable=False)
     password = Column(String(64),
                       nullable=True)

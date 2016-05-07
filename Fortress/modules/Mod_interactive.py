@@ -1,7 +1,19 @@
-
-import socket
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+#
+# Authors: limanman
+# OsChina: http://my.oschina.net/pydevops/
+# Purpose: 
+#
+# should be loaded after fortress user login.
+#
+#
+"""
 import sys
+import socket
 from paramiko.py3compat import u
+
 
 # windows does not have termios...
 try:
@@ -20,16 +32,16 @@ def interactive_shell(chan):
 
 
 def posix_shell(chan):
+    cur_cmds = ''
+    cmd_list = None
     import select
-    
     oldtty = termios.tcgetattr(sys.stdin)
     try:
         tty.setraw(sys.stdin.fileno())
         tty.setcbreak(sys.stdin.fileno())
         chan.settimeout(0.0)
-
         while True:
-            r, w, e = select.select([chan, sys.stdin], [], [])
+            r,w,e = select.select([chan,sys.stdin],[],[])
             if chan in r:
                 try:
                     x = u(chan.recv(1024))
@@ -44,18 +56,23 @@ def posix_shell(chan):
                 x = sys.stdin.read(1)
                 if len(x) == 0:
                     break
+                # 此处记录操作日志,日志过滤可参考Jumpserver的代码
+                if not x == '\r':
+                    cur_cmds += x
+                else:
+                    print '=>%s' % (cur_cmds)
                 chan.send(x)
 
     finally:
-        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, oldtty)
+        termios.tcsetattr(sys.stdin,termios.TCSADRAIN,oldtty)
 
-    
+
 # thanks to Mike Looijmans for this code
 def windows_shell(chan):
     import threading
 
     sys.stdout.write("Line-buffered terminal emulation. Press F6 or ^Z to send EOF.\r\n\r\n")
-        
+
     def writeall(sock):
         while True:
             data = sock.recv(256)
@@ -65,10 +82,10 @@ def windows_shell(chan):
                 break
             sys.stdout.write(data)
             sys.stdout.flush()
-        
-    writer = threading.Thread(target=writeall, args=(chan,))
+
+    writer = threading.Thread(target=writeall,args=(chan,))
     writer.start()
-        
+
     try:
         while True:
             d = sys.stdin.read(1)

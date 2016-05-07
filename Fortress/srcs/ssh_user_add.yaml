@@ -1,0 +1,30 @@
+# notice:
+#       1.一个主机和账户联合唯一为主机账户
+#       2.一个主机组可以对应多个主机账户,一个主机账户也可以属于多个主机组
+
+000000000001:
+  user: root
+  pass: hItp4tCqSdkynvGBXUWk1sSeqhBmQdVv
+  auth: ssh-pass
+  host:
+    - xm-server-10001
+  grup:
+    - xm-dock_srv-gp
+
+000000000002:
+  user: root
+  pass: se8eHZuLjHBoQtjHzn2Z4AWB9By7ghgU
+  auth: ssh-pass
+  host:
+    -  xm-server-10002
+  grup:
+    - xm-dock_srv-gp
+
+000000000003:
+  user: root
+  pass: IbjcXmGjr031QoCDfuovTPPDvTYeCUYd
+  auth: ssh-pass
+  host:
+    -  xm-server-10003
+  grup:
+    - xm-comm_srv-gp

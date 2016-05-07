@@ -9,10 +9,11 @@
 """
 import os
 import sys
+import yaml
 import datetime
 
 
-def exit_print(exit_msg, exit_level, is_exit=False):
+def exit_print(exit_msg,exit_level,is_exit=False):
     """Is exit with print ?
     
     :param exit_msg: exit message
@@ -20,12 +21,26 @@ def exit_print(exit_msg, exit_level, is_exit=False):
     :param is_exit: bool
     :return: None
     """
-    message = 'found %s: %s' % (exit_level, exit_msg)
+    message = 'found %s: %s' % (exit_level,exit_msg)
     if is_exit:
         sys.exit(message)
     else:
         print message
-        
+
+
+def load_yamls(yaml_file):
+    """Load and parse yaml file.
+    
+    :param yaml_file: yaml file
+    :return: dict
+    """
+    with open(yaml_file,'r+b') as rhandler:
+        try:
+            parse_res = yaml.load(rhandler)
+        except Exception,e:
+            exit_print(e,'errors',True)
+    return parse_res
+
 
 def show_usage(execute_file):
     """Show usage of fortress.
@@ -43,8 +58,8 @@ def show_usage(execute_file):
         'Copyright (C) 2016-%s by limanman and others.' % (datetime.datetime.now().year),
         'Web site: http://my.oschina.net/pydevops/',
     ])
-    
-    all_usage='''
+
+    all_usage = '''
     Usage: %s <action-type> [option] [yaml-file]
     
     action-types
@@ -53,6 +68,7 @@ def show_usage(execute_file):
         ssh_user_add   use sqlalchemy add sshusers
         ssh_grup_add   use sqlalchemy add sshgroup
         fts_user_add   use sqlalchemy add fortress users
+        sta_sessions   start paramiko interactive session
     
     options
         -f             yaml file for action types''' % (execute_file)

@@ -1,0 +1,19 @@
+# notice:
+#       1.一个主机组可以对应多个主机账户,一个主机账户也可以属于多个主机组
+#       2.一个主机组可以对应多个堡垒账户,一个堡垒账户也可以属于多个主机组
+
+000000000001:
+  name: xm-dock_srv-gp
+  host:
+    - xm-server-10001
+    - xm-server-10002
+  user:
+    - geyijun
+    - limanman
+
+000000000002:
+  name: xm-comm_srv-gp
+  host:
+    - xm-server-10003
+  user:
+    - limanman
