@@ -9,6 +9,7 @@
 > python main.py
 
 # sequential execution
+
 ##初始数据
 > python main.py initdatabase
 ##创建主机
