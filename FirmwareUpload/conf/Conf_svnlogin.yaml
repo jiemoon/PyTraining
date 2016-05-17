@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+#
+#
+# Authors: limanman
+# OsChina: http://my.oschina.net/pydevops/
+# Purpose: provided a easy way to upload firmware.
+#
+
+# for get IPC-General svn changed files during yesterday
+IPC:
+  baseurl: http://10.2.5.51/svn/Release/Dev/IPC/General/
+  hflag:   General
+  user:    tangjialing
+  passwd:  tjl123
+  update:  10
+  uprate:  300
+  logfile: logs/ipc_running_record.log
+
+
+# for get DVR-General svn changed files during yesterday
+DVR:
+  baseurl: http://10.2.5.51/svn/Release/Dev/DVR/General/
+  hflag:   General
+  user:    tangjialing
+  passwd:  tjl123
+  update:  10
+  uprate:  300
+  logfile: logs/dvr_running_record.log
+
+# for get XMJP-XMJP  svn changed files during yesterday
+XMJP:
+  baseurl: http://10.2.5.51/svn/Release/Dev/XMJP/
+  hflag:   XMJP
+  user:    tangjialing
+  passwd:  tjl123
+  update:  10
+  uprate:  300
+  logfile: logs/xmjp_running_record.log
+
+# for get JvFeng-General svn changed files during yesterday
+JvFeng:
+  baseurl: http://10.2.5.51/svn/Release/Dev/DVR/General/
+  hflag:   General
+  user:    tangjialing
+  passwd:  tjl123
+  update:  10
+  uprate:  300
+  logfile: logs/jvfeng_running_record.log

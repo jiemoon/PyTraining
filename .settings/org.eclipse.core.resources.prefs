@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+encoding//FirmwareUpload/conf/Conf_summary.py=utf-8
+encoding//FirmwareUpload/main.py=utf-8
+encoding//FirmwareUpload/modules/Mod_common.py=utf-8
 encoding//Fortress/conf/Conf_database.py=utf-8
 encoding//Fortress/core/Core_register.py=utf-8
 encoding//Fortress/core/Core_run.py=utf-8
@@ -9,6 +12,7 @@ encoding//Fortress/modules/Mod_sqlalchemy.py=utf-8
 encoding//Fortress/modules/Mod_sqlconnect.py=utf-8
 encoding//Fortress/modules/Mod_sshcontrol.py=utf-8
 encoding//Fortress/modules/Mod_view.py=utf-8
+encoding//collectd/core/core_run.py=utf-8
 encoding//collectd/main.py=utf-8
 encoding//collectd/modules/CommUtils.py=utf-8
 encoding//collectd/modules/ServiceGet.py=utf-8
