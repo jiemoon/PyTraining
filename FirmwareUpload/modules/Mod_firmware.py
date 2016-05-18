@@ -3,6 +3,7 @@ import os
 import wget
 import json
 import pprint
+import string
 import shutil
 import filecmp
 import zipfile
@@ -197,11 +198,17 @@ def f_note2dict(svn_key,svn_note):
                 date2firmware[cur_date,cur_type].append(cur_line)
 
     for cur_key,cur_val in date2firmware.iteritems():
+        add_flag = True
+        # date must be exists
         if not cur_val[2:]:
-            message = '%s with wrong releasenote format:%s %s' % (svn_note,cur_key[0],cur_key[1])
-            Conf_summary.logg_dict[svn_key](message,'warning')
-            continue
+            add_flag = False
+        # date must be match
         if cur_key[0] not in cur_val[2]:
+            add_flag = False
+        # date must not start with space
+        if cur_val[2][0] in string.whitespace:
+            add_flag = False
+        if not add_flag:
             message = '%s with wrong releasenote format:%s %s' % (svn_note,cur_key[0],cur_key[1])
             Conf_summary.logg_dict[svn_key](message,'warning')
             continue
@@ -209,7 +216,6 @@ def f_note2dict(svn_key,svn_note):
          'XmCloudUpgrade': None,
          'ChangeLog_SimpChinese': [],
          'ChangeLog_English': []}
-        add_flag = True
         for cur_item in cur_val[3:]:
             cur_item = cur_item.rstrip()
             match = re.match('(Level|XmCloudUpgrade|ChangeLog_SimpChinese|ChangeLog_English)\\s*=\\s*(.*)',cur_item)
