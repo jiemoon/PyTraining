@@ -56,7 +56,7 @@ def __dev2flow():
 
     recv_bytes = int(recv_bytes)*8
     send_bytes = int(send_bytes)*8
-    return interface.strip(), recv_bytes, send_bytes
+        return interface.strip(), recv_bytes, send_bytes
 
 
 def get_network_status(interval=1):
