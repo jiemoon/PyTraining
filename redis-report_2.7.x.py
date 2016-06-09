@@ -1,12 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-#
-# Authors: limanman
-# OsChina: http://my.oschina.net/pydevops/
-# Purpose:
-#
-"""
+
 import os
 import sys
 import redis
